@@ -13,7 +13,7 @@ const notesReducer = (state = initialState, action: INoteAction): IAppState => {
         case actionTypes.EDIT_NOTE:
             const updatedNote  = action.note;
             const updatedNotes = [...state.notes];
-            const index = updatedNotes.indexOf((note: INote) => note.id === updatedNote.id);
+            const index = updatedNotes.findIndex((note: INote) => note.id === updatedNote.id);
             updatedNotes[index] = updatedNote;
             return {
                 ...state,

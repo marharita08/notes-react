@@ -1,3 +1,4 @@
+import {ReactNode} from 'react';
 export interface INote {
     id: number,
     name: string,
@@ -15,6 +16,12 @@ export interface IAppState {
 export interface INoteAction {
     type: string,
     note: INote,
+}
+
+export interface ITableColumn<T> {
+    key: keyof T | string;
+    header?: string;
+    icon?: ReactNode;
 }
 
 export type DispatchType = (args: INoteAction) => INoteAction

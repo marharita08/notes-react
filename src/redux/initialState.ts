@@ -1,4 +1,4 @@
-import {IAppState} from "../interfaces/appState";
+import {IAppState} from "../types";
 
 export const initialState: IAppState = {
     notes: [

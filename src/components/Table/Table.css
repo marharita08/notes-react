@@ -1,0 +1,21 @@
+table {
+    border-collapse: collapse;
+}
+table input, table select {
+    width: 100%;
+}
+td, th {
+    padding: 10px;
+}
+thead tr {
+    background-color: #c7eac7;
+}
+tbody tr {
+    background-color: #ecf8ec;
+}
+.icon-button:hover {
+    background-color: #c7eac7;
+}
+.icon-button {
+    text-align: center;
+}
