@@ -1,5 +1,5 @@
 import React from 'react';
-import {ITableColumn} from "../../types";
+import { ITableColumn } from "../../types";
 import "./Table.css"
 
 interface TableProps<T extends Record<string, any>> {
@@ -36,7 +36,7 @@ function Table<T extends Record<string, any>>({ data, columns }: TableProps<T>) 
 }
 
 function getItemValue<T extends Record<string, any>>(item: T, key: keyof T | string): React.ReactNode {
-    return String(typeof key === 'string' && key in item ? item[key as keyof T] : '');
+    return String(key in item ? item[key as keyof T] : '');
 }
 
 export default Table;

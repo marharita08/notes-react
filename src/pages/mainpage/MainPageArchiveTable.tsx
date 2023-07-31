@@ -1,21 +1,20 @@
 import React from 'react';
 import Table from "../../components/Table/Table";
-import { useSelector } from 'react-redux';
-import { IAppState, INote, ITableColumn } from '../../types';
+import { INote, ITableColumn } from '../../types';
 import { FiLogOut } from "react-icons/fi";
+import { getArchived } from "../../services/notesServise";
+import { getColumnsByKeys } from "../../services/columnsService";
+import { getNoteKeys } from "../../services/keysService";
 
+interface Props {
+    notes: INote[]
+}
 
-const MainPageArchiveTable = () => {
-    const notes:INote[] = useSelector((state:IAppState) => state.notes);
-    const archivedNotes: INote[] = notes.filter((note: INote) => note.archived);
+const MainPageArchiveTable: React.FC<Props> = ({notes}) => {
+    const archivedNotes: INote[] = getArchived(notes);
     const noteColumns: ITableColumn<INote>[] = [
-        { key: "name", header: "Name" },
-        { key: "created", header: "Created"},
-        { key: "category", header: "Category"},
-        { key: "content", header: "Content"},
-        { key: "dates", header: "Dates"},
+        ...getColumnsByKeys(getNoteKeys()),
         { key: "unarchive", icon: <FiLogOut/>},
-
     ]
 
     return (

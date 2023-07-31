@@ -1,4 +1,7 @@
 table {
+    width: 100%;
+}
+table {
     border-collapse: collapse;
 }
 table input, table select {
