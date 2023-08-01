@@ -1,5 +1,7 @@
 import {INote, Summary} from "../types";
 import {getCategories} from "./categoriesService";
+import {findDates} from "./stringService";
+import {getNumber} from "./counter";
 
 export function getActive(notes: INote[]): INote[] {
     return notes.filter((note: INote) => !note.archived);
@@ -37,4 +39,21 @@ export function archiveNote(note: INote): INote {
     const archivedNote: INote = note;
     archivedNote.archived = true;
     return archivedNote;
+}
+
+export function createNote(name: string, category: string, content: string): INote {
+    const id:number = getNumber();
+    const dates:string = findDates(content);
+    const created:string = new Date().toLocaleDateString();
+    const archived:boolean = false;
+    return {id, name, created, category, content, dates, archived};
+}
+
+export function updateNote(note: INote, name: string, category: string, content: string): INote {
+    let updatedNote:INote = {...note};
+    updatedNote.name = name;
+    updatedNote.category = category;
+    updatedNote.content = content;
+    updatedNote.dates = findDates(content);
+    return updatedNote;
 }

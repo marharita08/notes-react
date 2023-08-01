@@ -4,9 +4,6 @@ table {
 table {
     border-collapse: collapse;
 }
-table input, table select {
-    width: 100%;
-}
 td, th {
     padding: 10px;
 }
@@ -21,4 +18,8 @@ tbody tr {
 }
 .icon-button {
     text-align: center;
+}
+table caption {
+    font-size: 18px;
+    font-weight: bold;
 }

@@ -5,29 +5,22 @@ import {FiLogOut} from "react-icons/fi";
 import {getArchived, unarchiveNote} from "../../services/notesServise";
 import {getColumnsByKeys} from "../../services/columnsService";
 import {getNoteKeys} from "../../services/keysService";
-import {editNote} from "../../redux/actions";
-import {useDispatch} from "react-redux";
 
 interface Props {
-    notes: INote[]
+    notes: INote[],
+    unarchiveNoteHandle: (note: INote) => void
 }
 
-const MainPageArchiveTable: React.FC<Props> = ({notes}) => {
-    const dispatch = useDispatch();
+const MainPageArchiveTable: React.FC<Props> = ({notes, unarchiveNoteHandle}) => {
     const archivedNotes: INote[] = getArchived(notes);
-
-    const unarchiveNoteHandle = (note: INote) => {
-        const unarchivedNote = unarchiveNote(note);
-        dispatch(editNote(unarchivedNote));
-    }
 
     const noteColumns: ITableColumn<INote>[] = [
         ...getColumnsByKeys(getNoteKeys()),
-        { key: "unarchive", icon: <FiLogOut/>, onclick: unarchiveNoteHandle},
+        { key: "unarchive", icon: <FiLogOut/>, onclick: (note: INote) => unarchiveNoteHandle(unarchiveNote(note))},
     ]
 
     return (
-        <Table data={archivedNotes} columns={noteColumns}/>
+        <Table data={archivedNotes} columns={noteColumns} header={"Archived Notes"}/>
     )
 }
 

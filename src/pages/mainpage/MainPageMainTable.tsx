@@ -5,35 +5,26 @@ import {FaEdit, FaArchive, FaTrash} from "react-icons/fa";
 import {archiveNote, getActive} from "../../services/notesServise";
 import {getColumnsByKeys} from "../../services/columnsService";
 import {getNoteKeys} from "../../services/keysService";
-import {useDispatch} from "react-redux";
-import {deleteNote, editNote} from "../../redux/actions";
 
 interface Props {
-    notes: INote[]
+    notes: INote[],
+    deleteNoteHandle: (note: INote) => void,
+    archiveNoteHandle: (note: INote) => void,
+    editNoteHandle: (note: INote) => void
 }
 
-const MainPageMainTable: React.FC<Props> = ({notes}) => {
-    const dispatch = useDispatch();
+const MainPageMainTable: React.FC<Props> = ({notes, editNoteHandle, archiveNoteHandle, deleteNoteHandle}) => {
     const activeNotes: INote[] = getActive(notes);
-
-    const deleteNoteHandle = (note: INote) => {
-        dispatch(deleteNote(note));
-    }
-
-    const archiveNoteHandle = (note: INote) => {
-        const archivedNote = archiveNote(note);
-        dispatch(editNote(archivedNote));
-    }
 
     const noteColumns: ITableColumn<INote>[] = [
         ...getColumnsByKeys(getNoteKeys()),
-        { key: "edit", icon: <FaEdit/>},
-        { key: "archive", icon: <FaArchive/>, onclick: archiveNoteHandle},
+        { key: "edit", icon: <FaEdit/>, onclick: editNoteHandle},
+        { key: "archive", icon: <FaArchive/>, onclick: (note: INote) => archiveNoteHandle(archiveNote(note))},
         { key: "delete", icon: <FaTrash/>, onclick: deleteNoteHandle}
     ]
 
     return (
-       <Table data={activeNotes} columns={noteColumns}/>
+       <Table data={activeNotes} columns={noteColumns} header={"Notes"}/>
     )
 }
 

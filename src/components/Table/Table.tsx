@@ -5,11 +5,13 @@ import "./Table.css"
 interface TableProps<T extends Record<string, any>> {
     data: T[];
     columns: ITableColumn<T>[];
+    header: string;
 }
 
-function Table<T extends Record<string, any>>({ data, columns }: TableProps<T>) {
+function Table<T extends Record<string, any>>({ data, columns, header }: TableProps<T>) {
     return (
         <table>
+            <caption>{header}</caption>
             <thead>
                 <tr>
                     {columns.map((column) => (

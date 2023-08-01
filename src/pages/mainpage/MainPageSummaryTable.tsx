@@ -14,7 +14,7 @@ const MainPageSummaryTable: React.FC<Props> = ({notes}) => {
     const summaryColumns: ITableColumn<Summary>[] = getColumnsByKeys(getSummaryKeys());
 
     return (
-        <Table data={summary} columns={summaryColumns} />
+        <Table data={summary} columns={summaryColumns} header={"Summary"}/>
     )
 }
 

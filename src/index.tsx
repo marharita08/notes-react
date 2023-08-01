@@ -5,10 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import Modal from 'react-modal';
+
+const rootStr:string = 'root';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById(rootStr) as HTMLElement
 );
+Modal.setAppElement(`#${rootStr}`);
 root.render(
   <React.StrictMode>
       <Provider store={store}>

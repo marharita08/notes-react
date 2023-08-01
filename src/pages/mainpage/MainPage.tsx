@@ -1,29 +1,77 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MainPageMainTable from "./MainPageMainTable";
 import MainPageArchiveTable from "./MainPageArchiveTable";
 import "./MainPage.css";
 import {IAppState, INote} from "../../types";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import MainPageSummaryTable from "./MainPageSummaryTable";
-import MainPageButtons from "./MainPageButtons";
+import ButtonWithIcon from "../../components/ButtonWithIcon/ButtonWithIcon";
+import {FaArchive, FaPlus} from "react-icons/fa";
+import MainPageAddEditNoteModal from "./MainPageAddEditNoteModal";
+import {addNote, deleteNote, editNote} from "../../redux/actions";
 
 const MainPage = () => {
+    const dispatch = useDispatch();
     const notes:INote[] = useSelector((state:IAppState) => state.notes);
+    const [isArchiveVisible, setArchiveVisible] = useState(false);
+    const [isAddEditModalOpen, setAddEditModalOpen] = useState(false);
+    const [noteToEdit, setNoteToEdit] = useState<INote | null>(null);
+
+    const openCloseArchiveHandle = () => {
+        setArchiveVisible(!isArchiveVisible);
+    }
+
+   const openModalToEdit = (note: INote) => {
+        setNoteToEdit(note);
+        setAddEditModalOpen(true);
+   }
+
+   const openModalToAdd = () => {
+        setNoteToEdit(null);
+        setAddEditModalOpen(true);
+   }
+
+   const closeModal = () => {
+        setAddEditModalOpen(false);
+   }
+
+    const addNoteHandle = (note: INote) => {
+        dispatch(addNote(note));
+    }
+
+    const updateNoteHandle = (note: INote) => {
+        dispatch(editNote(note));
+    }
+
+    const deleteNoteHandle = (note: INote) => {
+        dispatch(deleteNote(note));
+    }
 
     return (
         <>
             <div className={"table-container"}>
-                <MainPageMainTable notes={notes}/>
+                <MainPageMainTable notes={notes}
+                                   editNoteHandle={openModalToEdit}
+                                   archiveNoteHandle={updateNoteHandle}
+                                   deleteNoteHandle={deleteNoteHandle}/>
             </div>
             <div className={"button-container"}>
-                <MainPageButtons/>
+                <ButtonWithIcon text={isArchiveVisible?"Close Archive":"Open Archive"}
+                                icon={<FaArchive/>}
+                                onclick={openCloseArchiveHandle}/>
+                <ButtonWithIcon text={"Add Note"} icon={<FaPlus/>} onclick={openModalToAdd}/>
             </div>
-            <div className={"table-container"}>
-                <MainPageArchiveTable notes={notes}/>
-            </div>
+            {isArchiveVisible && <div className={"table-container"}>
+                 <MainPageArchiveTable notes={notes} unarchiveNoteHandle={updateNoteHandle}/>
+            </div>}
             <div className={"table-container"}>
                 <MainPageSummaryTable notes={notes}/>
             </div>
+            <MainPageAddEditNoteModal isOpen={isAddEditModalOpen}
+                                      onClose={closeModal}
+                                      noteToEdit={noteToEdit}
+                                      onUpdate={updateNoteHandle}
+                                      onAdd={addNoteHandle}/>
         </>
     )
 }
