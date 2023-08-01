@@ -1,46 +1,57 @@
-# Getting Started with Create React App
+# Notes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Notes App is a React application that allows users to manage their notes effectively. Users can add, edit, and delete notes, which are displayed in the form of a table. Additionally, notes can be archived and unarchived for better organization. Archived notes are displayed in a separate table, which is hidden by default.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Add Note**: Users can create new notes by providing a name, category and content. Once added, the note will appear in the main table.
+- **Edit Note**: Existing active notes can be edited to update their name, category or content.
+- **Delete Note**: If a note is no longer needed, users can delete it from the main table.
+- **Archive Note**: Users can archive a note to move it from the main table to the archived table.
+- **Unarchive Note**: If needed, archived notes can be unarchived and returned to the main table. The unarchived note will be available for regular editing and viewing.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- TypeScript
+- React
+- Redux
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Prerequisites
+Before running the application, make sure you have the Node.js installed.
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+1. Clone project from repository `git clone https://github.com/marharita08/notes-react`.
+2. Navigate to project folder `cd notes-react`.
+3. Install the necessary npm packages `npm install`.
+4. Run the application `npm start`.
+5. Once the application is running, open your web browser and go to `http://localhost:3000/`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Add a New Note**
+    - Click on the "Add Note" button.
+    - Enter a name and content, choose category for the new note.
+    - Click "Save" button to add the note to the main table.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Edit a Note**
+    - In the main table, locate the note you wish to edit.
+    - Click "Edit" icon to copy note to modal.
+    - Make the necessary changes.
+    - Click "Save" button to apply the modifications.
 
-### `npm run eject`
+3. **Delete a Note**
+    - In the main table, find the note you want to delete.
+    - Click the "Delete" icon associated with the note.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. **Archive/Unarchive a Note**
+    - In the main table, locate the note you want to archive.
+    - Click the "Archive" icon associated with the note to move it to the archived table.
+    - In the archived table, locate the note you want to unarchive.
+    - Click the "Unarchive" icon associated with the note to move it back to the main table.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Screenshots
+![Screenshot 1](screenshots/Screenshot_1.png)
+![Screenshot 2](screenshots/Screenshot_2.png)
+![Screenshot 3](screenshots/Screenshot_3.png)

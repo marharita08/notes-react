@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {INote} from "../../types";
 import Modal from 'react-modal';
 import {getCategories, getDefaultCategory} from "../../services/categoriesService";
@@ -22,11 +22,11 @@ const MainPageAddEditNoteModal: React.FC<Props> = ({ isOpen, onClose, noteToEdit
     const [category, setCategory] = useState(defaultCategory);
     const [content, setContent] = useState('');
 
-    const cleanFields = () => {
+    const cleanFields = useCallback(() => {
         setName('');
         setCategory(defaultCategory);
         setContent('');
-    }
+    }, [defaultCategory]);
 
     useEffect(() => {
         if (noteToEdit) {
@@ -36,7 +36,7 @@ const MainPageAddEditNoteModal: React.FC<Props> = ({ isOpen, onClose, noteToEdit
         } else {
             cleanFields();
         }
-    }, [noteToEdit]);
+    }, [noteToEdit, cleanFields]);
 
     const handleClose = () => {
         onClose();
