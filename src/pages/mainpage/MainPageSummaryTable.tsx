@@ -1,9 +1,9 @@
 import React from 'react';
 import Table from "../../components/Table/Table";
-import { INote, ITableColumn, Summary } from '../../types';
-import { getSummary } from "../../services/notesServise";
-import { getColumnsByKeys } from "../../services/columnsService";
-import { getSummaryKeys } from "../../services/keysService";
+import {INote, ITableColumn, Summary} from '../../types';
+import {getSummary} from "../../services/notesServise";
+import {getColumnsByKeys} from "../../services/columnsService";
+import {getSummaryKeys} from "../../services/keysService";
 
 interface Props {
     notes: INote[]

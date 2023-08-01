@@ -2,8 +2,8 @@ import React from 'react';
 import MainPageMainTable from "./MainPageMainTable";
 import MainPageArchiveTable from "./MainPageArchiveTable";
 import "./MainPage.css";
-import { IAppState, INote } from "../../types";
-import { useSelector } from "react-redux";
+import {IAppState, INote} from "../../types";
+import {useSelector} from "react-redux";
 import MainPageSummaryTable from "./MainPageSummaryTable";
 import MainPageButtons from "./MainPageButtons";
 

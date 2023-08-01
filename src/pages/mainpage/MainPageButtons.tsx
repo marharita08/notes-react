@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonWithIcon from "../../components/ButtonWithIcon/ButtonWithIcon";
-import { FaArchive, FaPlus } from "react-icons/fa";
+import {FaArchive, FaPlus} from "react-icons/fa";
 
 const MainPageButtons = () => {
     return (

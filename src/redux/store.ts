@@ -1,4 +1,4 @@
-import { createStore }  from 'redux';
+import {createStore}  from 'redux';
 import notesReducer from './reducers';
 import {IAppState, INoteAction} from "../types";
 import {Store} from "@reduxjs/toolkit";

@@ -1,20 +1,20 @@
-import { INote, Summary } from "../types";
-import { getCategories } from "./categoriesService";
+import {INote, Summary} from "../types";
+import {getCategories} from "./categoriesService";
 
-export function getActive(notes: INote[]) {
+export function getActive(notes: INote[]): INote[] {
     return notes.filter((note: INote) => !note.archived);
 }
 
-export function getArchived(notes: INote[]) {
+export function getArchived(notes: INote[]): INote[] {
     return notes.filter((note: INote) => note.archived);
 }
 
-function countActiveNoteByCategory(notes: INote[], category:string) {
-    return notes.filter(note => note.category === category && !note.archived).length
+function countActiveNoteByCategory(notes: INote[], category:string): number {
+    return notes.filter((note: INote) => note.category === category && !note.archived).length
 }
 
-function countArchivedNoteByCategory(notes: INote[], category:string) {
-    return notes.filter(note => note.category === category && note.archived).length
+function countArchivedNoteByCategory(notes: INote[], category:string): number {
+    return notes.filter((note: INote) => note.category === category && note.archived).length
 }
 
 export function getSummary(notes: INote[]): Summary[] {
@@ -27,3 +27,14 @@ export function getSummary(notes: INote[]): Summary[] {
     return summary;
 }
 
+export function unarchiveNote(note: INote): INote {
+    const unarchivedNote: INote = note;
+    unarchivedNote.archived = false;
+    return unarchivedNote;
+}
+
+export function archiveNote(note: INote): INote {
+    const archivedNote: INote = note;
+    archivedNote.archived = true;
+    return archivedNote;
+}

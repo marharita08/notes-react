@@ -23,6 +23,7 @@ export interface ITableColumn<T> {
     key: keyof T | string;
     header?: string;
     icon?: ReactNode;
+    onclick?: (item: T) => void
 }
 
 export interface Summary {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ITableColumn } from "../../types";
+import {ITableColumn} from "../../types";
 import "./Table.css"
 
 interface TableProps<T extends Record<string, any>> {
@@ -23,7 +23,14 @@ function Table<T extends Record<string, any>>({ data, columns }: TableProps<T>) 
                 {data.map((item, index) => (
                     <tr key={index}>
                         {columns.map((column) => (
-                            <td key={column.key.toString()} className={column.icon?"icon-button":""}>
+                            <td key={column.key.toString()}
+                                className={column.icon?"icon-button":""}
+                                onClick={():void => {
+                                    if (column.onclick) {
+                                        column.onclick(item);
+                                    }
+                                }}
+                            >
                                 {column.icon || getItemValue(item, column.key)}
                             </td>
                         ))}

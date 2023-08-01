@@ -1,5 +1,5 @@
-import { ITableColumn } from "../types";
-import { convertKeyToHeader } from "./stringService";
+import {ITableColumn} from "../types";
+import {convertKeyToHeader} from "./stringService";
 
 export function getColumnsByKeys(keys: string[]) {
     const columns: ITableColumn<Object>[] = [];
