@@ -83,6 +83,7 @@ const MainPageAddEditNoteModal: React.FC<Props> = ({ isOpen, onClose, noteToEdit
                     name="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required={true}
                 />
                 <br/>
                 <label>Category</label>
@@ -103,6 +104,7 @@ const MainPageAddEditNoteModal: React.FC<Props> = ({ isOpen, onClose, noteToEdit
                     name="content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
+                    required={true}
                 />
                 <br/>
                 <ButtonWithIcon text={"Save"} icon={<FaSave/>} type={"submit"}/>
