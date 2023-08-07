@@ -1,0 +1,14 @@
+.btn-with-icon {
+    background-color: #ecf8ec;
+    padding: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-with-icon:hover {
+    background-color: #c7eac7;
+}
+.btn-icon {
+    margin-right: 5px;
+}
