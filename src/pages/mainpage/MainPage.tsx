@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import MainPageMainTable from "./MainPageMainTable";
 import MainPageArchiveTable from "./MainPageArchiveTable";
-import "./MainPage.css";
 import {IAppState, INote} from "../../types";
 import {useDispatch, useSelector} from "react-redux";
 import MainPageSummaryTable from "./MainPageSummaryTable";
@@ -49,22 +48,22 @@ const MainPage = () => {
 
     return (
         <>
-            <div className={"table-container"}>
+            <div className={"my-5 mx-auto w-19/20 md:w-5/6 overflow-x-auto"}>
                 <MainPageMainTable notes={notes}
                                    editNoteHandle={openModalToEdit}
                                    archiveNoteHandle={updateNoteHandle}
                                    deleteNoteHandle={deleteNoteHandle}/>
             </div>
-            <div className={"button-container"}>
+            <div className={"my-5 mx-auto w-19/20 md:w-5/6 flex justify-end"}>
                 <ButtonWithIcon text={isArchiveVisible?"Close Archive":"Open Archive"}
                                 icon={<FaArchive/>}
                                 onclick={openCloseArchiveHandle}/>
                 <ButtonWithIcon text={"Add Note"} icon={<FaPlus/>} onclick={openModalToAdd}/>
             </div>
-            {isArchiveVisible && <div className={"table-container"}>
+            {isArchiveVisible && <div className={"my-5 mx-auto w-19/20 md:w-5/6 overflow-x-auto"}>
                  <MainPageArchiveTable notes={notes} unarchiveNoteHandle={updateNoteHandle}/>
             </div>}
-            <div className={"table-container"}>
+            <div className={"my-5 mx-auto w-19/20 md:w-5/6"}>
                 <MainPageSummaryTable notes={notes}/>
             </div>
             <MainPageAddEditNoteModal isOpen={isAddEditModalOpen}
