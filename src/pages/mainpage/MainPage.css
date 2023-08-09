@@ -1,8 +1,0 @@
-.button-container, .table-container {
-    margin: 20px auto;
-    width: 80%;
-}
-.button-container {
-    display: flex;
-    justify-content: right;
-}

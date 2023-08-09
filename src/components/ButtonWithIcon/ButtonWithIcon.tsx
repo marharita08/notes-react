@@ -1,18 +1,20 @@
 import React, {ReactNode} from 'react';
-import './ButtonWithIcon.css';
 
 interface ButtonWithIconProps {
     text: string;
     icon: ReactNode;
     onclick?: () => void;
-    type?: "submit"
+    type?: "submit";
+    className?: string;
 }
 
-const ButtonWithIcon: React.FC<ButtonWithIconProps> = ({ text, icon, onclick, type}) => {
+const ButtonWithIcon: React.FC<ButtonWithIconProps> = ({ text, icon, onclick, type, className}) => {
     return (
-        <button className="btn-with-icon" onClick={onclick} type={type}>
-            <span className="btn-icon">{icon}</span>
-            <span className="btn-text">{text}</span>
+        <button className={"bg-light-green hover:bg-green p-2.5 border-0 flex items-center justify-center " + className}
+                onClick={onclick}
+                type={type}>
+            <span className="mr-1">{icon}</span>
+            <span>{text}</span>
         </button>
     );
 };

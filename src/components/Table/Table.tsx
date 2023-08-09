@@ -1,6 +1,5 @@
 import React from 'react';
 import {ITableColumn} from "../../types";
-import "./Table.css"
 
 interface TableProps<T extends Record<string, any>> {
     data: T[];
@@ -10,12 +9,12 @@ interface TableProps<T extends Record<string, any>> {
 
 function Table<T extends Record<string, any>>({ data, columns, header }: TableProps<T>) {
     return (
-        <table>
-            <caption>{header}</caption>
+        <table className={"w-full border-collapse"}>
+            <caption className={"text-lg font-bold"}>{header}</caption>
             <thead>
-                <tr>
+                <tr className={"bg-green"}>
                     {columns.map((column) => (
-                        <th key={column.key.toString()}>
+                        <th key={column.key.toString()} className={"p-2.5"}>
                             {column.icon || column.header}
                         </th>
                     ))}
@@ -23,10 +22,10 @@ function Table<T extends Record<string, any>>({ data, columns, header }: TablePr
             </thead>
             <tbody>
                 {data.map((item, index) => (
-                    <tr key={index}>
+                    <tr key={index} className={"bg-light-green"}>
                         {columns.map((column) => (
                             <td key={column.key.toString()}
-                                className={column.icon?"icon-button":""}
+                                className={column.icon?"p-2.5 text-center hover:bg-green hover:cursor-pointer":"p-2.5"}
                                 onClick={():void => {
                                     if (column.onclick) {
                                         column.onclick(item);
