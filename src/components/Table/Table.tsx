@@ -44,7 +44,17 @@ function Table<T extends Record<string, any>>({ data, columns, header }: TablePr
 }
 
 function getItemValue<T extends Record<string, any>>(item: T, key: keyof T | string): React.ReactNode {
-    return String(key in item ? item[key as keyof T] : '');
+    const value = key in item ? item[key as keyof T] : '';
+    if (!value) {
+        return '';
+    }
+    if (Object.prototype.toString.call(value) === '[object Date]') {
+        return (value as Date).toLocaleDateString();
+    }
+    if (typeof value === 'object' && 'name' in value) {
+        return value['name'];
+    }
+    return String(value);
 }
 
 export default Table;

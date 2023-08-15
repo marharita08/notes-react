@@ -1,11 +1,12 @@
+//require('dotenv').config();
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Modal from 'react-modal';
+import './index.css';
 
 const rootStr:string = 'root';
 
