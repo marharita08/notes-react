@@ -7,7 +7,6 @@ export const getNotesFromApi = async () => {
 
 export const addNoteToApi = async (note: INoteToAddOrUpdate) => {
     return apiClient.post('/notes', {...note});
-
 }
 
 export const updateNoteOnApi = async (id: number, note: INoteToAddOrUpdate) => {
@@ -21,4 +20,3 @@ export const archiveOrUnarchiveNoteOnApi = async (id: number, archived: boolean)
 export const deleteNoteOnApi = async (id: number) => {
     return apiClient.delete(`/notes/${id}`);
 }
-
