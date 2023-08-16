@@ -1,6 +1,8 @@
 # Notes
 
-The Notes App is a React application that allows users to manage their notes effectively. Users can add, edit, and delete notes, which are displayed in the form of a table. Additionally, notes can be archived and unarchived for better organization. Archived notes are displayed in a separate table, which is hidden by default.
+This repository holds front-end of the Note App. It's back-end available by [link](https://github.com/marharita08/notes-express).
+
+The Notes App is an application that allows users to manage their notes effectively. Users can add, edit, and delete notes, which are displayed in the form of a table. Additionally, notes can be archived and unarchived for better organization. Archived notes are displayed in a separate table, which is hidden by default.
 
 ## Features
 
@@ -15,18 +17,20 @@ The Notes App is a React application that allows users to manage their notes eff
 - TypeScript
 - React
 - Redux
+- Tailwind CSS
 
 ## Prerequisites
+
 Before running the application, make sure you have the Node.js installed.
 
 ## Installation
 
-
-1. Clone project from repository `git clone https://github.com/marharita08/notes-react`.
-2. Navigate to project folder `cd notes-react`.
-3. Install the necessary npm packages `npm install`.
-4. Run the application `npm start`.
-5. Once the application is running, open your web browser and go to `http://localhost:3000/`.
+1. Install and run [back-end](https://github.com/marharita08/notes-express).
+2. Clone project from repository `git clone https://github.com/marharita08/notes-react`.
+3. Navigate to project folder `cd notes-react`.
+4. Install the necessary npm packages `npm install`.
+5. Run the application `npm start`.
+6. Once the application is running, open your web browser and go to `http://localhost:3000/`.
 
 ## Usage
 

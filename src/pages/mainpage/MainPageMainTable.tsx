@@ -2,13 +2,13 @@ import React from 'react';
 import Table from "../../components/Table/Table";
 import {INote, ITableColumn} from '../../types';
 import {FaEdit, FaArchive, FaTrash} from "react-icons/fa";
-import {archiveNote, getActive} from "../../services/notesServise";
+import {getActive} from "../../services/notesServise";
 import {getColumnsByKeys} from "../../services/columnsService";
 import {getNoteKeys} from "../../services/keysService";
 
 interface Props {
     notes: INote[],
-    deleteNoteHandle: (note: INote) => void,
+    deleteNoteHandle: (id: number) => void,
     archiveNoteHandle: (note: INote) => void,
     editNoteHandle: (note: INote) => void
 }
@@ -19,8 +19,10 @@ const MainPageMainTable: React.FC<Props> = ({notes, editNoteHandle, archiveNoteH
     const noteColumns: ITableColumn<INote>[] = [
         ...getColumnsByKeys(getNoteKeys()),
         { key: "edit", icon: <FaEdit/>, onclick: editNoteHandle},
-        { key: "archive", icon: <FaArchive/>, onclick: (note: INote) => archiveNoteHandle(archiveNote(note))},
-        { key: "delete", icon: <FaTrash/>, onclick: deleteNoteHandle}
+        { key: "archive", icon: <FaArchive/>,
+            onclick: (note: INote) => archiveNoteHandle(note)},
+        { key: "delete", icon: <FaTrash/>,
+            onclick: (note: INote) => deleteNoteHandle(note.note_id)}
     ]
 
     return (

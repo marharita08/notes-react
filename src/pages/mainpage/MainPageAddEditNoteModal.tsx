@@ -1,36 +1,35 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {INote} from "../../types";
+import {ICategory, INote, INoteToAddOrUpdate} from "../../types";
 import Modal from 'react-modal';
-import {getCategories, getDefaultCategory} from "../../services/categoriesService";
 import ButtonWithIcon from "../../components/ButtonWithIcon/ButtonWithIcon";
 import {FaSave} from "react-icons/fa";
 import {GrClose} from "react-icons/gr"
-import {createNote, updateNote} from "../../services/notesServise";
 
 interface Props {
     isOpen: boolean,
     onClose: () => void,
     noteToEdit: INote | null,
-    onUpdate: (note: INote) => void,
-    onAdd: (note: INote) => void,
+    onUpdate: (id: number, note: INoteToAddOrUpdate) => void,
+    onAdd: (note: INoteToAddOrUpdate) => void,
+    categories: ICategory[],
+    defaultCategoryId: number,
 }
 
-const MainPageAddEditNoteModal: React.FC<Props> = ({ isOpen, onClose, noteToEdit, onAdd, onUpdate }) => {
-    const defaultCategory = getDefaultCategory();
+const MainPageAddEditNoteModal: React.FC<Props> = ({ isOpen, onClose, noteToEdit, onAdd, onUpdate, categories, defaultCategoryId }) => {
     const [name, setName] = useState('');
-    const [category, setCategory] = useState(defaultCategory);
+    const [category, setCategory] = useState(defaultCategoryId);
     const [content, setContent] = useState('');
 
     const cleanFields = useCallback(() => {
         setName('');
-        setCategory(defaultCategory);
+        setCategory(defaultCategoryId);
         setContent('');
-    }, [defaultCategory]);
+    }, [defaultCategoryId]);
 
     useEffect(() => {
         if (noteToEdit) {
             setName(noteToEdit.name);
-            setCategory(noteToEdit.category);
+            setCategory(noteToEdit.category.category_id);
             setContent(noteToEdit.content);
         } else {
             cleanFields();
@@ -43,11 +42,13 @@ const MainPageAddEditNoteModal: React.FC<Props> = ({ isOpen, onClose, noteToEdit
     }
 
     const handleSave = (e: React.FormEvent) => {
+        console.log(noteToEdit);
+        console.log(category);
         e.preventDefault();
         if (noteToEdit) {
-            onUpdate(updateNote(noteToEdit, name, category, content));
+            onUpdate(noteToEdit.note_id, {name, category_id: category, content});
         } else {
-            onAdd(createNote(name, category, content));
+            onAdd({name, category_id: category, content});
         }
         handleClose();
     };
@@ -81,11 +82,14 @@ const MainPageAddEditNoteModal: React.FC<Props> = ({ isOpen, onClose, noteToEdit
                 <select
                     name="category"
                     value={category}
-                    onChange={(e) => setCategory(e.target.value)}
+                    onChange={(e) => setCategory(+e.target.value)}
                     className={"m-1.5 p-1.5 w-19/20 border rounded box-border"}
                 >
-                    {getCategories().map(
-                        (category: string) => <option value={category} key={category}>{category}</option>
+                    {categories.map(
+                        (category: ICategory) =>
+                            <option value={category.category_id} key={category.name}>
+                                {category.name}
+                            </option>
                     )}
                 </select>
                 <br/>
