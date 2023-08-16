@@ -1,6 +1,6 @@
 # Notes
 
-This repository holds front-end of the Note App. It's back-end available by [link](https://github.com/marharita08/notes-express).
+This repository holds front-end of the Note App. It's back-end available at the [link](https://github.com/marharita08/notes-express).
 
 The Notes App is an application that allows users to manage their notes effectively. Users can add, edit, and delete notes, which are displayed in the form of a table. Additionally, notes can be archived and unarchived for better organization. Archived notes are displayed in a separate table, which is hidden by default.
 
