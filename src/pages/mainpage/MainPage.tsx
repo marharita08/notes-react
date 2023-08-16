@@ -10,6 +10,7 @@ import MainPageAddEditNoteModal from "./MainPageAddEditNoteModal";
 import {addNote, deleteNote, editNote, setNotes, setCategories} from "../../redux/actions";
 import {fetchCategories} from "../../services/categoriesService";
 import {fetchNotes, updateNote, createNote, removeNote, archiveOrUnarchiveNote} from "../../services/notesServise";
+import Header from "../../components/Header/Header";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -65,6 +66,7 @@ const MainPage = () => {
 
     return (
         <>
+            <Header/>
             <div className={"my-5 mx-auto w-19/20 md:w-5/6 overflow-x-auto"}>
                 <MainPageMainTable notes={notes}
                                    editNoteHandle={openModalToEdit}

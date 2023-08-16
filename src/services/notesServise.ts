@@ -2,12 +2,14 @@ import {ICategory, INote, INoteAction, INoteToAddOrUpdate, ISetNotesAction, Summ
 import {getNotesFromApi, addNoteToApi, updateNoteOnApi, archiveOrUnarchiveNoteOnApi, deleteNoteOnApi} from "../axios/notes";
 import {Dispatch} from "redux";
 
+const onError = (error: any) => console.error(error);
+
 export function fetchNotes(dispatch: Dispatch, setNotes: (notes: INote[]) => ISetNotesAction): void {
     getNotesFromApi()
         .then(response => {
             dispatch(setNotes(response.data));
         })
-        .catch(error => console.error(error));
+        .catch(onError);
 }
 
 export function getActive(notes: INote[]): INote[] {
@@ -39,23 +41,23 @@ export function getSummary(notes: INote[], categories: ICategory[]): Summary[] {
 export function archiveOrUnarchiveNote(note: INote, dispatch: Dispatch, editNote: (note: INote) => INoteAction): void {
     archiveOrUnarchiveNoteOnApi(note.note_id, !note.archived)
         .then(response => dispatch(editNote(response.data)))
-        .catch(error => console.error(error));
+        .catch(onError);
 }
 
 export function createNote(note: INoteToAddOrUpdate, dispatch: Dispatch, addNote: (note: INote) => INoteAction): void {
     addNoteToApi(note)
         .then(response => dispatch(addNote(response.data)))
-        .catch(error => console.error(error));
+        .catch(onError);
 }
 
 export function updateNote(id: number, note: INoteToAddOrUpdate, dispatch: Dispatch, editNote: (note: INote) => INoteAction): void {
     updateNoteOnApi(id, note)
         .then(response => dispatch(editNote(response.data)))
-        .catch(error => console.error(error));
+        .catch(onError);
 }
 
 export function removeNote(id: number, dispatch: Dispatch, deleteNote: (note: INote) => INoteAction): void {
     deleteNoteOnApi(id)
         .then(response => dispatch(deleteNote(response.data)))
-        .catch(error => console.error(error));
+        .catch(onError);
 }

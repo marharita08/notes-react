@@ -29,8 +29,9 @@ Before running the application, make sure you have the Node.js installed.
 2. Clone project from repository `git clone https://github.com/marharita08/notes-react`.
 3. Navigate to project folder `cd notes-react`.
 4. Install the necessary npm packages `npm install`.
-5. Run the application `npm start`.
-6. Once the application is running, open your web browser and go to `http://localhost:3000/`.
+5. Update `.env` if it is necessary.
+6. Run the application `npm start`.
+7. Once the application is running, open your web browser and go to `http://localhost:3000/`.
 
 ## Usage
 
